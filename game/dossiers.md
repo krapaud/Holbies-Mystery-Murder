@@ -12,18 +12,11 @@ Le Campement 7 est le salon supprimé. Vous devez retrouver les traces qui s’y
 
 ## Dossier 2 — Le pic d’activité
 
-Vous devez compter les accès enregistrés pour chaque salon et repérer le groupe qui contient au moins trois traces.
+Vous devez comparer le volume d’accès enregistré pour chaque salon et repérer le groupe qui contient au moins trois traces.
 
-~~~sql
-SELECT channel_id, COUNT(*) AS trace_count
-FROM access_logs
-GROUP BY channel_id
-HAVING COUNT(*) >= 3;
-~~~
+Vous devez produire une requête qui regroupe les accès par channel_id, compte le nombre de traces et filtre les groupes après le regroupement.
 
-Cette requête doit faire apparaître le Campement 7 avec quatre traces. Elle sert à repérer le pic d’activité suspect.
-
-**Indice de Jack :** COUNT vous dit combien de traces existent. HAVING vous permet de conserver uniquement les groupes assez importants.
+**Indice de Jack :** utilisez une fonction d’agrégation pour compter, regroupez les lignes par salon, puis utilisez le filtre adapté aux résultats agrégés. Le Campement 7 doit apparaître avec quatre traces.
 
 ## Dossier 3 — Le compte privilégié
 
