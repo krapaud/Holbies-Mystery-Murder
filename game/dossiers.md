@@ -27,13 +27,13 @@ Cette requête doit faire apparaître le Campement 7 avec quatre traces. Elle se
 
 ## Dossier 3 — Le compte privilégié
 
-Anthony possédait les droits manage sur le Campement 7. Vous devez prouver que son compte était suffisamment puissant pour permettre le vol.
+Vous devez identifier, dans access_grants, le compte qui possède le privilège manage sur le Campement 7 et noter son member_id.
 
 **Indice de Jack :** la table access_grants contient les autorisations. Le propriétaire d’une clé n’est pas automatiquement le voleur.
 
 ## Dossier 4 — Les témoignages
 
-Lisa et Lydie sont des passantes ou des victimes. Elles n’ont pas volé le salon. Leurs messages donnent des horaires et décrivent le badge utilisé.
+Deux témoins ou victimes ont laissé des messages. Ils n’ont pas volé le salon. Leurs messages donnent des horaires et décrivent le badge utilisé.
 
 **Indice de Jack :** vous devez relier un message à son auteur avec une seule jointure si vous avez besoin du nom. Ne faites pas parler les témoignages hors de leur chronologie.
 
@@ -48,7 +48,7 @@ Vous devez comparer credential_owner_id et actor_id dans access_logs.
 
 ## Dossier 6 — Le coupable
 
-Mickael est le véritable voleur. Vous devez le prouver grâce à l’action export, aux horaires et au compte d’Anthony.
+Vous devez identifier la personne indiquée par actor_id lors de l’action export du Campement 7. Croisez cette trace avec les horaires, les témoignages et l’action archive.
 
 Vous devez produire uniquement :
 
@@ -56,7 +56,7 @@ Vous devez produire uniquement :
 COMPTE|VOLEUR
 ~~~
 
-**Indice de Jack :** Anthony avait la clé. Mickael l’a utilisée.
+**Indice de Jack :** le propriétaire de la clé n’est pas celui qui l’a utilisée.
 
 ## Validation
 
