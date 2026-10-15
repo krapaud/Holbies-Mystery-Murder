@@ -39,7 +39,7 @@ INSERT INTO events (event_id, channel_id, member_id, event_type, occurred_at, de
 (7,1,3,'rename','2026-10-14 08:57:00','Un membre publie un faux message dans La grande salle.','DECOY'),
 (8,4,4,'join','2026-10-14 08:35:30','Une membre rejoint Campement 1 avant de parler dans Besoin d aide.','LISA-TIME'),
 (9,5,5,'join','2026-10-14 08:43:30','Une membre rejoint Campement 2 avant de rejoindre Le Feu de camp.','LYDIE-TIME'),
-(10,1,1,'message','2026-10-14 09:03:00','Kevin ajoute un dernier témoignage après sa vérification.','KEVIN-FOLLOWUP');
+(10,1,1,'join','2026-10-14 09:03:00','Kevin ajoute un dernier témoignage après sa vérification.','KEVIN-FOLLOWUP');
 
 INSERT INTO access_grants (grant_id, channel_id, member_id, privilege, granted_at, granted_by) VALUES
 (1,7,2,'manage','2026-10-14 08:32:00',1),
