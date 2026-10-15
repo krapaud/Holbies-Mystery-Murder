@@ -22,7 +22,7 @@ Les archives contiennent les salons suivants :
 - 🏕️ Campement 3 ;
 - 🏕️ Campement 7, le salon supprimé.
 
-Plusieurs personnes apparaissent dans les archives. Certaines sont des témoins ou des victimes. Une autre personne possédait les privilèges nécessaires, tandis que l’auteur du vol a utilisé ces droits. À vous de relier les preuves sans vous fier à une seule déclaration.
+Plusieurs personnes apparaissent dans les archives. Certaines sont des témoins ou des victimes. Une autre personne possédait les privilèges nécessaires, tandis que l’auteur du vol a utilisé ces droits. À vous de reconstruire la chronologie sans vous fier à une seule déclaration.
 
 ## Avant d’entrer dans les archives
 
@@ -71,7 +71,7 @@ Vous devez comparer le volume d’accès enregistré pour chaque salon et repér
 
 Vous devez produire une requête qui regroupe les accès par channel_id, compte le nombre de traces et filtre les groupes après le regroupement.
 
-**Indice de Jack :** utilisez une fonction d’agrégation pour compter, regroupez les lignes par salon, puis utilisez le filtre adapté aux résultats agrégés. Le Campement 7 doit apparaître avec quatre traces.
+**Indice de Jack :** utilisez une fonction d’agrégation pour compter, regroupez les lignes par salon, puis utilisez le filtre adapté aux résultats agrégés. Le Campement 7 doit apparaître avec quatre traces, mais d’autres salons contiennent aussi des accès isolés.
 
 ### Dossier 3 — Le compte privilégié
 
@@ -79,24 +79,31 @@ Vous devez identifier, dans access_grants, le compte qui possède le privilège 
 
 **Indice de Jack :** la table access_grants contient les autorisations. Le propriétaire d’une clé n’est pas automatiquement le voleur.
 
-### Dossier 4 — Les témoignages
+### Dossier 4 — Les témoignages et la chronologie
 
-Deux témoins ou victimes ont laissé des messages. Ils n’ont pas volé le salon. Leurs messages donnent des horaires et décrivent le badge utilisé.
+Deux témoins ou victimes ont laissé plusieurs messages dans des salons différents. Vous devez comparer leurs horaires avec les événements et les connexions enregistrées. Ils n’ont pas volé le salon, mais leurs déplacements permettent de vérifier ce qui est possible ou impossible.
 
-**Indice de Jack :** vous devez relier un message à son auteur avec une seule jointure si vous avez besoin du nom. Ne faites pas parler les témoignages hors de leur chronologie.
+**Indice de Jack :** vous devez relier un message à son auteur avec une seule jointure si vous avez besoin du nom. Ne faites pas parler les témoignages hors de leur chronologie : classez les heures avant de tirer une conclusion.
 
 ### Dossier 5 — L’identité derrière la clé
 
-Vous devez comparer credential_owner_id et actor_id dans access_logs.
+Vous devez comparer credential_owner_id et actor_id dans access_logs. Vérifiez aussi que l’action suspecte correspond bien à l’horaire de l’export, et distinguez les connexions normales des actions effectuées sur Campement 7.
 
 - credential_owner_id désigne le compte dont les droits sont utilisés ;
 - actor_id désigne la personne qui réalise l’action.
 
-**Indice de Jack :** si les deux identifiants sont différents lors de l’export, le compte a été détourné.
+**Indice de Jack :** si les deux identifiants sont différents lors de l’export, le compte a été détourné. Une connexion légitime ailleurs ne prouve pas que son propriétaire a réalisé l’export.
 
 ### Dossier 6 — Le coupable
 
-Vous devez identifier la personne indiquée par actor_id lors de l’action export du Campement 7. Croisez cette trace avec les horaires, les témoignages et l’action archive.
+Vous devez identifier la personne indiquée par actor_id lors de l’action export du Campement 7. Croisez cette trace avec :
+
+- le privilège accordé ;
+- l’horaire de l’export et du masquage ;
+- les témoignages ;
+- l’action publiée ensuite pour brouiller les pistes.
+
+Vous devez réunir au moins trois éléments indépendants avant de conclure.
 
 Vous devez produire uniquement :
 
@@ -104,7 +111,7 @@ Vous devez produire uniquement :
 COMPTE|VOLEUR
 ~~~
 
-**Indice de Jack :** le propriétaire de la clé n’est pas celui qui l’a utilisée.
+**Indice de Jack :** le propriétaire de la clé n’est pas celui qui l’a utilisée. Le message publié après le vol peut être une diversion.
 
 ## Validation finale
 
