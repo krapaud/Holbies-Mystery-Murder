@@ -53,13 +53,13 @@ Vous devez ensuite observer la structure de la base avec `.schema`. Vous pourrez
 
 ## Validation finale
 
-Quand vous pensez avoir reconstitué le mot de passe, vous devez quitter SQLite puis lancer :
+Vous devez lancer la validation uniquement lorsque vous pensez avoir reconstitué le mot de passe :
 
 ```bash
 python3 main.py --flag 'VOTRE_PROPOSITION'
 ```
 
-Une mauvaise proposition vous permettra de recommencer. Une réponse correcte clôturera le dossier et vous indiquera de contacter Kevin, le maître des salons.
+Si votre proposition est incorrecte, vous devez vérifier vos fragments et recommencer. Si elle est correcte, vous devez contacter Kevin, le maître des salons : le dossier sera alors clôturé.
 
 > « Les salons ne disparaissent jamais vraiment. Ils changent seulement d’endroit. À vous de trouver lequel. »
 >
