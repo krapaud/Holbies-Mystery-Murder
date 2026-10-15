@@ -25,8 +25,8 @@ INSERT INTO messages (message_id, channel_id, member_id, sent_at, body, evidence
 (5,2,4,'2026-10-14 08:51:00','La personne portait un blouson avec une initiale M.','INITIAL'),
 (6,3,5,'2026-10-14 08:54:00','Je n ai jamais vu Anthony quitter son poste ce matin-la.','TEMOIN'),
 (7,1,3,'2026-10-14 08:58:00','Le dossier est a moi maintenant.','DECOY'),
-(8,4,4,'2026-10-14 08:36:00','J ai croise quelqu un pres des campements avant mon passage au salon d aide.','LISA-TIME'),
-(9,5,5,'2026-10-14 08:44:00','Le badge a ete utilise apres le passage de la personne autorisee.','LYDIE-TIME'),
+(8,4,4,'2026-10-14 08:36:00','J ai croise quelqu un pres des campements avant mon passage au salon d aide.','TIMELINE-A'),
+(9,5,5,'2026-10-14 08:44:00','Le badge a ete utilise apres le passage de la personne autorisee.','TIMELINE-B'),
 (10,1,1,'2026-10-14 09:03:00','Le proprietaire du badge affirme ne pas avoir exporte le dossier.','KEVIN-FOLLOWUP');
 
 INSERT INTO events (event_id, channel_id, member_id, event_type, occurred_at, details, evidence_tag) VALUES
@@ -37,8 +37,8 @@ INSERT INTO events (event_id, channel_id, member_id, event_type, occurred_at, de
 (5,7,3,'theft','2026-10-14 08:52:00','Le contenu de Campement 7 est exporte puis le salon est masque.','THEFT'),
 (6,1,1,'archive','2026-10-14 08:53:00','Kevin constate que Campement 7 est devenu invisible.','HIDDEN'),
 (7,1,3,'rename','2026-10-14 08:57:00','Un membre publie un faux message dans La grande salle.','DECOY'),
-(8,4,4,'join','2026-10-14 08:35:30','Une membre rejoint Campement 1 avant de parler dans Besoin d aide.','LISA-TIME'),
-(9,5,5,'join','2026-10-14 08:43:30','Une membre rejoint Campement 2 avant de rejoindre Le Feu de camp.','LYDIE-TIME'),
+(8,4,4,'join','2026-10-14 08:35:30','Une membre rejoint Campement 1 avant de parler dans Besoin d aide.','TIMELINE-A'),
+(9,5,5,'join','2026-10-14 08:43:30','Une membre rejoint Campement 2 avant de rejoindre Le Feu de camp.','TIMELINE-B'),
 (10,1,1,'join','2026-10-14 09:03:00','Kevin ajoute un dernier témoignage après sa vérification.','KEVIN-FOLLOWUP');
 
 INSERT INTO access_grants (grant_id, channel_id, member_id, privilege, granted_at, granted_by) VALUES
