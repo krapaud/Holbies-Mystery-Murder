@@ -1,13 +1,18 @@
 # Opération Salon Fantôme
 
-> « Si vous lisez ces lignes, c’est que le 🏕️ Campement 7 a déjà disparu.
-> Je m’appelle Jack Query. Kevin m’a laissé les archives, mais Mickael a déjà effacé une partie de ses traces. »
+> « Si vous lisez ces lignes, vous savez déjà que le 🏕️ Campement 7 a été supprimé.
+> Je m’appelle Jack Query. Votre mission n’est pas de retrouver le salon. Votre mission est de trouver le voleur. »
 
 ## Votre mission
 
-Kevin, le maître des salons, est la victime d’un vol. Le 🏕️ Campement 7 a été masqué et son dossier confidentiel a été exporté.
+Kevin, le maître des salons, vous prévient : le Campement 7 a été supprimé et son dossier confidentiel a été volé.
 
-Les archives contiennent les salons réels du serveur :
+Vous connaissez donc la scène dès le début. Vous devez prouver :
+
+1. quel compte privilégié a été compromis ;
+2. qui a utilisé ce compte pour voler le dossier.
+
+Les salons présents dans les archives sont :
 
 - 📡 La grande salle ;
 - 🔥 Le Feu de camp ;
@@ -15,17 +20,11 @@ Les archives contiennent les salons réels du serveur :
 - 🏕️ Campement 1 ;
 - 🏕️ Campement 2 ;
 - 🏕️ Campement 3 ;
-- 🏕️ Campement 7.
-
-Vous devez prouver :
-
-1. quel salon a disparu ;
-2. quel compte privilégié a été utilisé ;
-3. qui a commis le vol.
+- 🏕️ Campement 7, le salon supprimé.
 
 Mickael est le voleur. Anthony possédait les privilèges utilisés. Lisa et Lydie sont des passantes ou des victimes dont les témoignages permettent de reconstituer la chronologie.
 
-Vous devez lire les six dossiers de [game/dossiers.md](game/dossiers.md) dans l’ordre. Chaque requête doit utiliser au maximum un JOIN. Vous devez aussi utiliser au moins une fois COUNT, GROUP BY et HAVING.
+Vous devez lire les six dossiers de [game/dossiers.md](game/dossiers.md) dans l’ordre. Chaque requête doit utiliser au maximum un JOIN. Vous devez aussi utiliser COUNT, GROUP BY et HAVING pour repérer le pic d’activité autour du salon supprimé.
 
 ## Avant d’entrer dans les archives
 
@@ -58,14 +57,14 @@ Vous devez travailler en équipe, noter les preuves et ne pas conclure à partir
 
 ## Validation finale
 
-Quand vous pensez avoir retrouvé les trois éléments, vous devez quitter SQLite et lancer :
+Quand vous pensez avoir identifié le compte compromis et le voleur, vous devez quitter SQLite et lancer :
 
 ~~~bash
-python3 main.py --answer 'CAMPEMENT-7|COMPTE|VOLEUR'
+python3 main.py --answer 'COMPTE|VOLEUR'
 ~~~
 
-Remplacez la valeur par votre preuve complète, dans cet ordre. Une preuve correcte vous permettra de contacter Kevin.
+Remplacez la valeur par votre preuve complète, dans cet ordre. Une preuve correcte permettra de contacter Kevin.
 
-> « Lisa et Lydie ont vu les traces. Anthony avait la clé. Mickael a volé le Campement 7. À vous de le prouver. »
+> « Le salon a disparu. La question est : qui avait la clé, et qui s’en est servi ? »
 >
 > — Jack Query

@@ -1,22 +1,18 @@
 # Les dossiers de Jack Query
 
-> « Kevin a perdu le 🏕️ Campement 7. Mickael a volé son contenu. Mais il n’a pas forcé la porte : il a utilisé un accès qui appartenait à quelqu’un d’autre. À vous de retrouver les preuves. » — Jack Query
+> « Vous savez déjà que le 🏕️ Campement 7 a été supprimé. Kevin veut autre chose : savoir qui a utilisé une clé légitime pour commettre le vol. » — Jack Query
 
-Vous devez enquêter dans l’ordre. Une requête ne doit utiliser qu’un seul JOIN. Si vous avez besoin d’une nouvelle relation, vous devez écrire une nouvelle requête.
+Le salon supprimé n’est pas à retrouver. Vous devez identifier le compte privilégié compromis et le véritable voleur. Une requête ne doit utiliser qu’un seul JOIN.
 
-## Dossier 1 — Le salon disparu
+## Dossier 1 — La scène connue
 
-Kevin est la victime. Vous devez retrouver le salon qu’il avait créé et déterminer son état actuel parmi La grande salle, Le Feu de camp, Besoin d’aide et les campements.
+Le Campement 7 est le salon supprimé. Vous devez retrouver les traces qui s’y rapportent et noter son channel_id pour vos recherches.
 
-**Indice de Jack :** commencez avec la table channels. Cherchez le salon dont le statut est hidden.
+**Indice de Jack :** le statut hidden confirme la scène, mais ne constitue pas la réponse. La question est : qui a pu agir dans ce salon ?
 
-## Dossier 2 — Le salon qui parle le plus
+## Dossier 2 — Le pic d’activité
 
-Tous les salons ne présentent pas le même nombre de traces. Vous devez compter les accès enregistrés pour chaque salon et ne conserver que celui qui possède au moins trois traces.
-
-**Indice de Jack :** vous devez utiliser COUNT, GROUP BY et HAVING. Le filtre HAVING s’applique après le regroupement.
-
-La forme attendue est :
+Vous devez compter les accès enregistrés pour chaque salon et repérer le groupe qui contient au moins trois traces.
 
 ~~~sql
 SELECT channel_id, COUNT(*) AS trace_count
@@ -25,50 +21,51 @@ GROUP BY channel_id
 HAVING COUNT(*) >= 3;
 ~~~
 
-Le résultat doit vous ramener vers le Campement 7.
+Cette requête doit faire apparaître le Campement 7 avec quatre traces. Elle sert à repérer le pic d’activité suspect.
+
+**Indice de Jack :** COUNT vous dit combien de traces existent. HAVING vous permet de conserver uniquement les groupes assez importants.
 
 ## Dossier 3 — Le compte privilégié
 
-Anthony possédait des droits élevés pour aider Kevin. Vous devez retrouver le privilège accordé au Campement 7, le salon concerné et la date de l’autorisation.
+Anthony possédait les droits manage sur le Campement 7. Vous devez prouver que son compte était suffisamment puissant pour permettre le vol.
 
-**Indice de Jack :** la table access_grants contient les autorisations. Ne confondez pas le propriétaire du compte avec l’auteur du vol.
+**Indice de Jack :** la table access_grants contient les autorisations. Le propriétaire d’une clé n’est pas automatiquement le voleur.
 
-## Dossier 4 — Les témoins
+## Dossier 4 — Les témoignages
 
-Lisa et Lydie sont des passantes ou des victimes. Elles n’ont pas volé le salon, mais leurs messages dans Besoin d’aide et Le Feu de camp donnent deux éléments de la chronologie.
+Lisa et Lydie sont des passantes ou des victimes. Elles n’ont pas volé le salon. Leurs messages donnent des horaires et décrivent le badge utilisé.
 
-**Indice de Jack :** utilisez messages et filtrez sur le nom de l’auteur. Une seule jointure suffit pour relier un message à son salon ou à son auteur.
+**Indice de Jack :** vous devez relier un message à son auteur avec une seule jointure si vous avez besoin du nom. Ne faites pas parler les témoignages hors de leur chronologie.
 
-## Dossier 5 — La trace d’accès
+## Dossier 5 — L’identité derrière la clé
 
-Vous devez comparer les connexions d’Anthony avec les actions effectuées grâce à ses droits.
+Vous devez comparer credential_owner_id et actor_id dans access_logs.
 
-**Indice de Jack :** dans access_logs, comparez credential_owner_id et actor_id. Si ces identifiants ne désignent pas la même personne, l’accès a été utilisé par quelqu’un d’autre.
+- credential_owner_id désigne le compte dont les droits sont utilisés ;
+- actor_id désigne la personne qui réalise l’action.
 
-## Dossier 6 — Le faux témoignage et la preuve finale
+**Indice de Jack :** si les deux identifiants sont différents lors de l’export, le compte a été détourné.
 
-Mickael a publié un faux message dans La grande salle pour brouiller les pistes. Vous devez l’écarter, puis réunir trois informations :
+## Dossier 6 — Le coupable
 
-1. le nom du salon disparu ;
-2. le compte privilégié utilisé ;
-3. le voleur.
+Mickael est le véritable voleur. Vous devez le prouver grâce à l’action export, aux horaires et au compte d’Anthony.
 
-Vous devez conserver cet ordre et produire :
+Vous devez produire uniquement :
 
 ~~~text
-CAMPEMENT-7|COMPTE|VOLEUR
+COMPTE|VOLEUR
 ~~~
 
-**Indice de Jack :** le voleur est la personne indiquée par actor_id dans l’accès d’export du Campement 7. Anthony est le propriétaire du compte utilisé, pas le voleur.
+**Indice de Jack :** Anthony avait la clé. Mickael l’a utilisée.
 
 ## Validation
 
 Quittez SQLite puis lancez :
 
 ~~~bash
-python3 main.py --answer 'CAMPEMENT-7|COMPTE|VOLEUR'
+python3 main.py --answer 'COMPTE|VOLEUR'
 ~~~
 
-Une preuve correcte permettra de contacter Kevin.
+Une preuve correcte identifie le compte compromis et le voleur. Kevin vous indiquera alors la suite.
 
-> « Lisa et Lydie ont vu des morceaux de la vérité. Anthony avait la clé. Mickael a franchi la porte. » — Jack Query
+> « Le salon a disparu, mais le voleur a laissé sa trace. » — Jack Query

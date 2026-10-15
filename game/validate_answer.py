@@ -1,18 +1,18 @@
-"""Validate the structured final answer without exposing it."""
+"""Validate the structured culprit proof without exposing it."""
 
 import hashlib
 
-ANSWER_DIGEST = "4a560246261c8e053321cd8a41e4f2c2ad7f4c3278a190c1ab60bdccc159ff45"
+ANSWER_DIGEST = "b3ffedd5bb99d61f2a0dabf1bff96e84f9384add08cec1854e4f5e36763c212a"
 
 
 def validate(candidate: str) -> int:
     normalized = candidate.strip().upper()
     digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
     if digest == ANSWER_DIGEST:
-        print("Félicitations, vous avez identifié le salon, le compte utilisé et le voleur.")
-        print("Kevin vous attend : le dossier est résolu.")
+        print("Félicitations, vous avez identifié le compte compromis et le voleur.")
+        print("Kevin vous attend : l'enquête est résolue.")
         return 0
-    print("La preuve est incomplète. Vérifiez le salon, le compte privilégié et l'auteur du vol.")
+    print("La preuve est incomplète. Vérifiez le compte privilégié et l'auteur du vol.")
     return 1
 
 
