@@ -10,12 +10,12 @@ INSERT INTO channels VALUES
 (6,'🏕️ Campement 3','voice','active','2026-10-14 08:25:00'),
 (7,'🏕️ Campement 7','voice','hidden','2026-10-14 08:30:00');
 
-INSERT INTO members VALUES
-(1,'Kevin','victim','2026-10-14 08:01:00'),
-(2,'Anthony','privileged','2026-10-14 08:02:00'),
-(3,'Mickael','thief','2026-10-14 08:03:00'),
-(4,'Lisa','witness','2026-10-14 08:04:00'),
-(5,'Lydie','witness','2026-10-14 08:06:00');
+INSERT INTO members (member_id, display_name, joined_at) VALUES
+(1,'Kevin','2026-10-14 08:01:00'),
+(2,'Anthony','2026-10-14 08:02:00'),
+(3,'Mickael','2026-10-14 08:03:00'),
+(4,'Lisa','2026-10-14 08:04:00'),
+(5,'Lydie','2026-10-14 08:06:00');
 
 INSERT INTO messages (message_id, channel_id, member_id, sent_at, body, evidence_tag) VALUES
 (1,1,1,'2026-10-14 08:35:00','Le Campement 7 contient le dossier que je devais remettre a Kevin.','KEVIN'),
@@ -28,12 +28,12 @@ INSERT INTO messages (message_id, channel_id, member_id, sent_at, body, evidence
 
 INSERT INTO events (event_id, channel_id, member_id, event_type, occurred_at, details, evidence_tag) VALUES
 (1,7,1,'create','2026-10-14 08:31:00','Kevin ouvre Campement 7 pour deposer le dossier.','START'),
-(2,7,2,'permission','2026-10-14 08:32:00','Anthony recoit le privilege manage pour aider Kevin.','PRIV'),
-(3,3,4,'join','2026-10-14 08:38:00','Lisa entre dans Besoin d aide pour remettre un message.','LISA'),
-(4,2,5,'join','2026-10-14 08:41:00','Lydie passe par Le Feu de camp et entend une alerte.','LYDIE'),
+(2,7,2,'permission','2026-10-14 08:32:00','Un membre recoit le privilege manage pour aider Kevin.','PRIV'),
+(3,3,4,'join','2026-10-14 08:38:00','Une temoin entre dans Besoin d aide pour remettre un message.','LISA'),
+(4,2,5,'join','2026-10-14 08:41:00','Une passante passe par Le Feu de camp et entend une alerte.','LYDIE'),
 (5,7,3,'theft','2026-10-14 08:52:00','Le contenu de Campement 7 est exporte puis le salon est masque.','THEFT'),
 (6,1,1,'archive','2026-10-14 08:53:00','Kevin constate que Campement 7 est devenu invisible.','HIDDEN'),
-(7,1,3,'rename','2026-10-14 08:57:00','Mickael publie un faux message dans La grande salle.','DECOY');
+(7,1,3,'rename','2026-10-14 08:57:00','Un membre publie un faux message dans La grande salle.','DECOY');
 
 INSERT INTO access_grants (grant_id, channel_id, member_id, privilege, granted_at, granted_by) VALUES
 (1,7,2,'manage','2026-10-14 08:32:00',1),
@@ -42,11 +42,11 @@ INSERT INTO access_grants (grant_id, channel_id, member_id, privilege, granted_a
 (4,2,5,'read','2026-10-14 08:35:00',1);
 
 INSERT INTO access_logs (log_id, channel_id, credential_owner_id, actor_id, occurred_at, action, device, details) VALUES
-(1,7,2,2,'2026-10-14 08:32:30','login','poste-02','Anthony ouvre sa session de gestion.'),
-(2,7,2,3,'2026-10-14 08:51:00','export','poste-07','Export du dossier confidentiel avec les droits d Anthony.'),
+(1,7,2,2,'2026-10-14 08:32:30','login','poste-02','Le proprietaire ouvre sa session de gestion.'),
+(2,7,2,3,'2026-10-14 08:51:00','export','poste-07','Export du dossier confidentiel avec les droits du proprietaire.'),
 (3,7,2,3,'2026-10-14 08:52:00','archive','poste-07','Masquage de Campement 7 apres export.'),
 (4,1,1,3,'2026-10-14 08:57:00','rename','poste-07','Publication du faux message dans La grande salle.'),
-(5,7,2,2,'2026-10-14 09:02:00','login','poste-02','Anthony revient et decouvre Campement 7 masque.');
+(5,7,2,2,'2026-10-14 09:02:00','login','poste-02','Le proprietaire revient et decouvre Campement 7 masque.');
 
 INSERT INTO clues (clue_id, message_id, event_id, clue_kind, dossier) VALUES
 (1,1,1,'lead',1),
