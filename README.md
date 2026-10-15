@@ -1,13 +1,34 @@
-# SQL Escape Game
+# Opération Salon Fantôme
 
-Escape game pédagogique pour apprendre à enquêter dans une base SQLite avec SQL.
+Le salon vocal préféré de l'équipe a disparu. Jack Query a dispersé les indices dans des archives. Votre équipe choisit un enquêteur qui partage son terminal ; les autres participants l'aident à analyser les résultats.
 
-## Statut
+## Pré-requis
 
-Le dépôt est en phase de cadrage. Le scénario, les règles pédagogiques et les données de jeu seront ajoutés après validation de la conception.
+- VS Code ou un éditeur de texte ;
+- Python 3 ;
+- SQLite en ligne de commande (`sqlite3`).
 
-## Périmètre pédagogique
+## Démarrer
 
-Les joueurs utiliseront le terminal et VS Code pour explorer des tables liées, filtrer des fausses pistes, construire des jointures et reconstituer un flag final. Le jeu n'utilise ni navigateur, ni bot Discord, ni API externe.
+Depuis la racine du projet :
 
-Aucune solution ni aucun fragment du flag ne doit être exposé dans les fichiers distribués aux joueurs.
+```bash
+python3 main.py
+sqlite3 database/game.db
+```
+
+Explorez le schéma et les tables avec les commandes SQLite. Les six dossiers demandent de relier les archives, d'écarter les fausses pistes et de remettre les résultats dans l'ordre. Les jointures sont nécessaires pour obtenir les fragments.
+
+Quand l'équipe pense avoir reconstitué le flag :
+
+```bash
+python3 main.py --flag 'VOTRE_FLAG'
+```
+
+Une erreur permet de réessayer sans réinitialiser l'enquête. Une réussite affiche une félicitation et demande de contacter Kevin, le maître des salons.
+
+## Règles du jeu
+
+- Ne modifiez pas les fichiers SQL pendant l'enquête.
+- N'utilisez pas de solution externe : le dépôt est conçu pour être autonome.
+- Les réponses ne sont pas données dans ce README.
