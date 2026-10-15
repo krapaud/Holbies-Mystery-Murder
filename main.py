@@ -27,13 +27,16 @@ def main() -> int:
     print("Vous devez retrouver le salon, le compte privilégié utilisé et le voleur.")
     print("Explorez la base avec : sqlite3 database/game.db")
     print("Quand votre preuve est complète, relancez avec --answer 'SALON|COMPTE|VOLEUR'.")
-    if "--answer" not in sys.argv:
+    arguments = sys.argv[1:]
+    if not arguments:
         return 0
-    index = sys.argv.index("--answer")
-    if index + 1 >= len(sys.argv):
+    if arguments[0] != "--answer":
+        print("Utilisez uniquement l'option --answer pour envoyer votre preuve.")
+        return 1
+    if len(arguments) != 2:
         print("Indiquez une preuve après --answer.")
         return 1
-    return validate(sys.argv[index + 1])
+    return validate(arguments[1])
 
 
 if __name__ == "__main__":
