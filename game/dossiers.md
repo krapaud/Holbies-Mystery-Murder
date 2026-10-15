@@ -10,33 +10,44 @@ Kevin est la victime. Vous devez retrouver le salon qu’il avait créé et dét
 
 **Indice de Jack :** commencez avec la table channels. Cherchez le salon dont le statut est hidden.
 
-## Dossier 2 — Le compte privilégié
+## Dossier 2 — Le salon qui parle le plus
+
+Tous les salons ne présentent pas le même nombre de traces. Vous devez compter les accès enregistrés pour chaque salon et ne conserver que celui qui possède au moins trois traces.
+
+**Indice de Jack :** vous devez utiliser COUNT, GROUP BY et HAVING. Le filtre HAVING s’applique après le regroupement.
+
+La forme attendue est :
+
+~~~sql
+SELECT channel_id, COUNT(*) AS trace_count
+FROM access_logs
+GROUP BY channel_id
+HAVING COUNT(*) >= 3;
+~~~
+
+Le résultat doit vous ramener vers le salon Orbite. Vous devez conserver son channel_id pour la suite.
+
+## Dossier 3 — Le compte privilégié
 
 Anthony possédait des droits élevés pour aider Kevin. Vous devez retrouver le privilège accordé, le salon concerné et la date de l’autorisation.
 
 **Indice de Jack :** la table access_grants contient les autorisations. Ne confondez pas le propriétaire du compte avec l’auteur du vol.
 
-## Dossier 3 — Les témoins
+## Dossier 4 — Les témoins
 
 Lisa et Lydie sont des passantes ou des victimes. Elles n’ont pas volé le salon, mais leurs messages donnent deux éléments de la chronologie.
 
 **Indice de Jack :** utilisez messages et filtrez sur le nom de l’auteur. Une seule jointure suffit pour relier un message à son salon ou à son auteur.
 
-## Dossier 4 — La trace d’accès
+## Dossier 5 — La trace d’accès
 
 Vous devez comparer les connexions d’Anthony avec les actions effectuées grâce à ses droits.
 
 **Indice de Jack :** dans access_logs, comparez credential_owner_id et actor_id. Si ces identifiants ne désignent pas la même personne, l’accès a été utilisé par quelqu’un d’autre.
 
-## Dossier 5 — Le faux témoignage
+## Dossier 6 — Le faux témoignage et la preuve finale
 
-Mickael a publié un message pour brouiller les pistes. Vous devez le comparer aux événements et aux journaux d’accès.
-
-**Indice de Jack :** une fausse piste contient une action de renommage et le mot DECOY. Ne la confondez pas avec l’export du dossier.
-
-## Dossier 6 — La preuve finale
-
-Vous devez réunir trois informations :
+Mickael a publié un message pour brouiller les pistes. Vous devez l’écarter, puis réunir trois informations :
 
 1. le nom du salon disparu ;
 2. le compte privilégié utilisé ;
