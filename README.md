@@ -1,11 +1,21 @@
 # Opération Salon Fantôme
 
-> « Si vous lisez ces lignes, c’est que le salon a déjà disparu.
+> « Si vous lisez ces lignes, c’est que le 🏕️ Campement 7 a déjà disparu.
 > Je m’appelle Jack Query. Kevin m’a laissé les archives, mais Mickael a déjà effacé une partie de ses traces. »
 
 ## Votre mission
 
-Kevin, le maître des salons, est la victime d’un vol. Le salon privé Orbite a été masqué et son dossier confidentiel a été exporté.
+Kevin, le maître des salons, est la victime d’un vol. Le 🏕️ Campement 7 a été masqué et son dossier confidentiel a été exporté.
+
+Les archives contiennent les salons réels du serveur :
+
+- 📡 La grande salle ;
+- 🔥 Le Feu de camp ;
+- 👐 Besoin d’aide ;
+- 🏕️ Campement 1 ;
+- 🏕️ Campement 2 ;
+- 🏕️ Campement 3 ;
+- 🏕️ Campement 7.
 
 Vous devez prouver :
 
@@ -15,7 +25,7 @@ Vous devez prouver :
 
 Mickael est le voleur. Anthony possédait les privilèges utilisés. Lisa et Lydie sont des passantes ou des victimes dont les témoignages permettent de reconstituer la chronologie.
 
-Vous devez lire les six dossiers de [game/dossiers.md](game/dossiers.md) dans l’ordre. Chaque requête doit utiliser au maximum un JOIN. Vous devez aussi utiliser au moins une fois COUNT, GROUP BY et HAVING pour repérer le salon qui possède le plus de traces d’accès.
+Vous devez lire les six dossiers de [game/dossiers.md](game/dossiers.md) dans l’ordre. Chaque requête doit utiliser au maximum un JOIN. Vous devez aussi utiliser au moins une fois COUNT, GROUP BY et HAVING.
 
 ## Avant d’entrer dans les archives
 
@@ -51,11 +61,11 @@ Vous devez travailler en équipe, noter les preuves et ne pas conclure à partir
 Quand vous pensez avoir retrouvé les trois éléments, vous devez quitter SQLite et lancer :
 
 ~~~bash
-python3 main.py --answer 'SALON|COMPTE|VOLEUR'
+python3 main.py --answer 'CAMPEMENT-7|COMPTE|VOLEUR'
 ~~~
 
-Remplacez la valeur par votre preuve complète, dans cet ordre. Une mauvaise preuve vous demandera de vérifier les indices. Une preuve correcte vous permettra de contacter Kevin.
+Remplacez la valeur par votre preuve complète, dans cet ordre. Une preuve correcte vous permettra de contacter Kevin.
 
-> « Lisa et Lydie ont vu les traces. Anthony avait la clé. Mickael a volé le dossier. À vous de le prouver. »
+> « Lisa et Lydie ont vu les traces. Anthony avait la clé. Mickael a volé le Campement 7. À vous de le prouver. »
 >
 > — Jack Query
