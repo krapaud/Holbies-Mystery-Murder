@@ -9,46 +9,57 @@ Le salon vocal préféré de votre équipe s'est volatilisé. Pas supprimé. Pas
 
 J'ai dispersé les archives dans une base de données : messages, membres, événements et anciennes traces de salons. Certaines pistes vous aideront. D'autres ont été placées là pour vous faire perdre du temps.
 
-Désignez un enquêteur. Il prendra les commandes et partagera son terminal. Les autres membres de l'équipe seront ses yeux, sa mémoire et son instinct.
+Vous devez désigner un enquêteur. Il prendra les commandes et partagera son terminal. Les autres membres de l'équipe devront l'aider en observant les résultats, en proposant des requêtes et en reliant les indices.
 
-Votre objectif : retrouver le salon disparu et reconstituer le mot de passe qui permettra de clôturer l'affaire.
+Vous devez retrouver le salon disparu et reconstituer le mot de passe qui permettra de clôturer l'affaire.
 
-Les six dossiers de l'enquête se trouvent dans [game/dossiers.md](game/dossiers.md). Lisez-les dans l'ordre, puis construisez vos propres requêtes.
+Vous devez lire les six dossiers de l'enquête dans [game/dossiers.md](game/dossiers.md), dans l'ordre. Vous devrez ensuite construire vos propres requêtes SQL.
 
 ## Avant d'entrer dans les archives
 
-Vous aurez besoin de Python 3, SQLite 3, un terminal, VS Code ou un éditeur de texte, et d'une équipe capable de partager le terminal de l'enquêteur.
+Vous devez disposer de Python 3, SQLite 3, d'un terminal, de VS Code ou d'un éditeur de texte, et d'une équipe capable de partager le terminal de l'enquêteur.
 
-Aucune connexion à Discord ni à un service externe n'est nécessaire.
+Vous ne devez vous connecter à aucun service externe. L'enquête est entièrement contenue dans ce dépôt.
 
 ## Le premier pas
 
-Depuis la racine du projet :
+Vous devez vous placer à la racine du projet, puis lancer le dossier :
 
 ```bash
 python3 main.py
+```
+
+Vous devez ensuite ouvrir la base de données :
+
+```bash
 sqlite3 database/game.db
 ```
 
-Commencez par observer la structure avec `.tables` et `.schema`. Explorez, filtrez, triez et reliez les informations entre elles.
+Une fois dans SQLite, vous devez commencer par afficher les tables disponibles :
+
+```sql
+.tables
+```
+
+Vous devez ensuite observer la structure de la base avec `.schema`. Vous pourrez alors explorer, filtrer, trier et relier les informations entre elles.
 
 ## Règles de l'enquête
 
-- Travaillez en équipe et partagez chaque découverte.
-- Ne modifiez pas les fichiers SQL pendant la partie.
-- Notez les fragments et leur ordre.
-- Méfiez-vous des fausses pistes.
-- Une information seule ne suffira pas : cherchez les relations.
+- Vous devez travailler en équipe et partager chaque découverte.
+- Vous ne devez pas modifier les fichiers SQL pendant la partie.
+- Vous devez noter les fragments et leur ordre.
+- Vous devez vous méfier des fausses pistes.
+- Vous devez chercher les relations entre les tables : une information isolée ne suffira pas.
 
 ## Validation finale
 
-Quand votre équipe pense avoir reconstitué le mot de passe :
+Quand vous pensez avoir reconstitué le mot de passe, vous devez quitter SQLite puis lancer :
 
 ```bash
 python3 main.py --flag 'VOTRE_PROPOSITION'
 ```
 
-Une mauvaise proposition permet de recommencer. Une réponse correcte clôture le dossier et vous indique de contacter Kevin, le maître des salons.
+Une mauvaise proposition vous permettra de recommencer. Une réponse correcte clôturera le dossier et vous indiquera de contacter Kevin, le maître des salons.
 
 > « Les salons ne disparaissent jamais vraiment. Ils changent seulement d’endroit. À vous de trouver lequel. »
 >
