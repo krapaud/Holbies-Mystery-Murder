@@ -81,9 +81,13 @@ Vous devez identifier, dans access_grants, le compte qui possède le privilège 
 
 ### Dossier 4 — Les témoignages et la chronologie
 
-Deux témoins ou victimes ont laissé plusieurs messages dans des salons différents. Vous devez comparer leurs horaires avec les événements et les connexions enregistrées. Ils n’ont pas volé le salon, mais leurs déplacements permettent de vérifier ce qui est possible ou impossible.
+Deux témoins ou victimes ont laissé plusieurs messages dans des salons différents. Les archives ont anonymisé leurs repères temporels avec les tags `TIMELINE-A` et `TIMELINE-B`.
 
-**Indice de Jack :** vous devez relier un message à son auteur avec une seule jointure si vous avez besoin du nom. Ne faites pas parler les témoignages hors de leur chronologie : classez les heures avant de tirer une conclusion.
+Vous devez retrouver ces messages grâce à `evidence_tag`, identifier leurs auteurs avec une seule jointure, puis comparer `sent_at` avec les événements et les connexions enregistrées. Leurs déplacements permettent de vérifier ce qui est possible ou impossible.
+
+Vous devez conserver les heures dans votre chronologie et noter quel témoignage confirme ou contredit chaque hypothèse.
+
+**Indice de Jack :** commencez par les tags temporels, puis faites parler les auteurs. Un témoin ne prouve pas seul l’identité du voleur : il sert à valider la chronologie.
 
 ### Dossier 5 — L’identité derrière la clé
 
