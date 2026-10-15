@@ -12,7 +12,7 @@ Vous connaissez donc la scène dès le début. Vous devez prouver :
 1. quel compte privilégié a été compromis ;
 2. qui a utilisé ce compte pour voler le dossier.
 
-Les salons présents dans les archives sont :
+Les archives contiennent les salons suivants :
 
 - 📡 La grande salle ;
 - 🔥 Le Feu de camp ;
@@ -22,7 +22,7 @@ Les salons présents dans les archives sont :
 - 🏕️ Campement 3 ;
 - 🏕️ Campement 7, le salon supprimé.
 
-Mickael est le voleur. Anthony possédait les privilèges utilisés. Lisa et Lydie sont des passantes ou des victimes dont les témoignages permettent de reconstituer la chronologie.
+Plusieurs personnes apparaissent dans les archives. Certaines sont des témoins ou des victimes. Une autre personne possédait les privilèges nécessaires, tandis que l’auteur du vol a utilisé ces droits. À vous de relier les preuves sans vous fier à une seule déclaration.
 
 Vous devez lire les six dossiers de [game/dossiers.md](game/dossiers.md) dans l’ordre. Chaque requête doit utiliser au maximum un JOIN. Vous devez aussi utiliser COUNT, GROUP BY et HAVING pour repérer le pic d’activité autour du salon supprimé.
 
