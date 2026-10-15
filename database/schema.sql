@@ -19,7 +19,6 @@ CREATE TABLE channels (
 CREATE TABLE members (
   member_id INTEGER PRIMARY KEY,
   display_name TEXT NOT NULL UNIQUE,
-  role TEXT NOT NULL CHECK (role IN ('victim', 'witness', 'privileged', 'thief')),
   joined_at TEXT NOT NULL
 );
 
