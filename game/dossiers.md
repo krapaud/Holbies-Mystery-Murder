@@ -8,7 +8,7 @@ Vous devez enquêter dans l’ordre. Une requête ne doit utiliser qu’un seul 
 
 Kevin est la victime. Vous devez retrouver le salon qu’il avait créé et déterminer son état actuel.
 
-**Indice de Jack :** commencez avec la table channels. Cherchez le salon dont le statut n’est pas active.
+**Indice de Jack :** commencez avec la table channels. Cherchez le salon dont le statut est hidden.
 
 ## Dossier 2 — Le compte privilégié
 
