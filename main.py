@@ -23,10 +23,10 @@ def build_database() -> None:
 def main() -> int:
     build_database()
     print("Opération Salon Fantôme")
-    print("Kevin vous appelle : le salon Orbite a été volé puis masqué.")
+    print("Kevin vous appelle : le salon 🏕️ Campement 7 a été volé puis masqué.")
     print("Vous devez retrouver le salon, le compte privilégié utilisé et le voleur.")
     print("Explorez la base avec : sqlite3 database/game.db")
-    print("Quand votre preuve est complète, relancez avec --answer 'SALON|COMPTE|VOLEUR'.")
+    print("Quand votre preuve est complète, relancez avec --answer 'CAMPEMENT-7|COMPTE|VOLEUR'.")
     arguments = sys.argv[1:]
     if not arguments:
         return 0
