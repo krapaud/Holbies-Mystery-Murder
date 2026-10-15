@@ -4,7 +4,7 @@ import sqlite3
 import sys
 from pathlib import Path
 
-from game.validate_flag import validate
+from game.validate_answer import validate
 
 ROOT = Path(__file__).parent
 DATABASE = ROOT / "database" / "game.db"
@@ -27,19 +27,16 @@ def main() -> int:
     print("Vous devez retrouver le salon, le compte privilégié utilisé et le voleur.")
     print("Explorez la base avec : sqlite3 database/game.db")
     print("Quand votre preuve est complète, relancez avec --answer 'SALON|COMPTE|VOLEUR'.")
-    if "--answer" in sys.argv:
-        index = sys.argv.index("--answer")
-        if index + 1 >= len(sys.argv):
-            print("Indiquez une preuve après --answer.")
-            return 1
-        return validate(sys.argv[index + 1])
-    if "--flag" in sys.argv:
-        index = sys.argv.index("--flag")
-        if index + 1 >= len(sys.argv):
-            print("Indiquez une preuve après --flag.")
-            return 1
-        return validate(sys.argv[index + 1])
-    return 0
+    arguments = sys.argv[1:]
+    if not arguments:
+        return 0
+    if arguments[0] != "--answer":
+        print("Utilisez uniquement l'option --answer pour envoyer votre preuve.")
+        return 1
+    if len(arguments) != 2:
+        print("Indiquez une preuve après --answer.")
+        return 1
+    return validate(arguments[1])
 
 
 if __name__ == "__main__":
