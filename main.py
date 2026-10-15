@@ -1,6 +1,7 @@
 """Start the Salon Fantôme investigation."""
 
 import sqlite3
+import sys
 from pathlib import Path
 
 from game.validate_flag import validate
@@ -21,14 +22,21 @@ def build_database() -> None:
 
 def main() -> int:
     build_database()
-    print("Dossier 001 - Disparition du salon vocal")
-    print("Jack Query vous attend. Explorez la base avec : sqlite3 database/game.db")
-    print("Quand vous avez reconstitué le flag, relancez ce programme avec --flag FLAG.")
-    import sys
+    print("Opération Salon Fantôme")
+    print("Kevin vous appelle : le salon Orbite a été volé puis masqué.")
+    print("Vous devez retrouver le salon, le compte privilégié utilisé et le voleur.")
+    print("Explorez la base avec : sqlite3 database/game.db")
+    print("Quand votre preuve est complète, relancez avec --answer 'SALON|COMPTE|VOLEUR'.")
+    if "--answer" in sys.argv:
+        index = sys.argv.index("--answer")
+        if index + 1 >= len(sys.argv):
+            print("Indiquez une preuve après --answer.")
+            return 1
+        return validate(sys.argv[index + 1])
     if "--flag" in sys.argv:
         index = sys.argv.index("--flag")
         if index + 1 >= len(sys.argv):
-            print("Indique un flag après --flag.")
+            print("Indiquez une preuve après --flag.")
             return 1
         return validate(sys.argv[index + 1])
     return 0
