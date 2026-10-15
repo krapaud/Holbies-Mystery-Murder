@@ -1,0 +1,41 @@
+.codex/
+AGENTS.md
+docs/
+
+# Base SQLite générée au lancement
+database/game.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets et variables locales
+.env
+.env.*
+!.env.example
+
+# Système et éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Journaux et fichiers temporaires
+*.log
+*.tmp
+*.temp
