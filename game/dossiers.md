@@ -1,65 +1,63 @@
 # Les dossiers de Jack Query
 
-Chaque dossier donne une direction, jamais la requête complète. L'enquêteur partage son terminal et l'équipe vérifie les hypothèses.
+> « Kevin a perdu le salon Orbite. Mickael a volé son contenu. Mais il n’a pas forcé la porte : il a utilisé un accès qui appartenait à quelqu’un d’autre. À vous de retrouver les preuves. » — Jack Query
 
-> « Vous n'êtes pas seuls dans ces archives. Si vous bloquez, lisez le message d'aide de chaque dossier. Je vous guiderai, mais je ne ferai pas l'enquête à votre place. » — Jack Query
+Vous devez enquêter dans l’ordre. Une requête ne doit utiliser qu’un seul JOIN. Si vous avez besoin d’une nouvelle relation, vous devez écrire une nouvelle requête.
 
-## Dossier 1 — Les portes du réseau
+## Dossier 1 — Le salon disparu
 
-« Avant de suivre une personne, regardez les lieux où elle pouvait se cacher. Les noms ne disent pas toujours la vérité. »
+Kevin est la victime. Vous devez retrouver le salon qu’il avait créé et déterminer son état actuel.
 
-Inventoriez les salons et comparez leur type avec les traces d'activité qui leur sont associées. Repérez les lieux suspects sans conclure trop vite.
+**Indice de Jack :** commencez avec la table channels. Cherchez le salon dont le statut n’est pas active.
 
-**Message d'aide de Jack :** Vous devez commencer par découvrir les tables avec `.tables`, puis observer leurs colonnes avec `.schema`. Cherchez d'abord les salons, pas encore le mot de passe.
+## Dossier 2 — Le compte privilégié
 
-## Dossier 2 — Ceux qui avaient les clés
+Anthony possédait des droits élevés pour aider Kevin. Vous devez retrouver le privilège accordé, le salon concerné et la date de l’autorisation.
 
-« Un salon n'est jamais seulement un nom. Cherchez ceux qui y entraient, ceux qui y restaient et ceux qui apparaissaient au mauvais moment. »
+**Indice de Jack :** la table access_grants contient les autorisations. Ne confondez pas le propriétaire du compte avec l’auteur du vol.
 
-Reliez les salons aux membres, puis confrontez les rôles et les auteurs des messages. Un membre intéressant n'est pas forcément celui qui parle le plus.
+## Dossier 3 — Les témoins
 
-**Message d'aide de Jack :** Vous devez relier les tables avec la colonne qui identifie le salon. Regardez aussi les rôles et les dates avant de choisir un suspect.
+Lisa et Lydie sont des passantes ou des victimes. Elles n’ont pas volé le salon, mais leurs messages donnent deux éléments de la chronologie.
 
-## Dossier 3 — Les messages qui ne devaient pas rester
+**Indice de Jack :** utilisez messages et filtrez sur le nom de l’auteur. Une seule jointure suffit pour relier un message à son salon ou à son auteur.
 
-« Un message isolé raconte rarement toute la vérité. Replacez les paroles dans leur salon et face à leur auteur. »
+## Dossier 4 — La trace d’accès
 
-Croisez messages, salons et membres. Certaines lignes ne sont que du contexte ou une fausse piste ; cherchez ce qui mérite d'être confirmé par les événements.
+Vous devez comparer les connexions d’Anthony avec les actions effectuées grâce à ses droits.
 
-**Message d'aide de Jack :** Vous devez utiliser les messages pour trouver une piste, puis la confirmer avec la table des événements. Une phrase seule ne constitue pas une preuve.
+**Indice de Jack :** dans access_logs, comparez credential_owner_id et actor_id. Si ces identifiants ne désignent pas la même personne, l’accès a été utilisé par quelqu’un d’autre.
 
-## Dossier 4 — Les traces laissées après coup
+## Dossier 5 — Le faux témoignage
 
-« Les messages racontent ce que quelqu'un voulait montrer. Les événements racontent parfois ce qui s'est réellement passé. »
+Mickael a publié un message pour brouiller les pistes. Vous devez le comparer aux événements et aux journaux d’accès.
 
-Confrontez les événements aux messages précédents. Comparez les dates, les types d'action, les personnes et les salons.
+**Indice de Jack :** une fausse piste contient une action de renommage et le mot DECOY. Ne la confondez pas avec l’export du dossier.
 
-**Message d'aide de Jack :** Vous devez comparer les horodatages. Une action arrivée après un message peut confirmer ou contredire ce que vous venez de lire.
+## Dossier 6 — La preuve finale
 
-## Dossier 5 — Les pièces du témoignage
+Vous devez réunir trois informations :
 
-« Aucun indice ne devrait suffire à lui seul. Cherchez les traces qui se répondent. »
+1. le nom du salon disparu ;
+2. le compte privilégié utilisé ;
+3. le voleur.
 
-Reliez les indices aux messages et aux événements, puis vérifiez leur contexte avec les salons et les membres. Écartez ce qui ne respecte pas la chronologie.
+Vous devez conserver cet ordre et produire la preuve finale au format :
 
-**Message d'aide de Jack :** Vous devez examiner la table `clues`. Les lignes de type `decoy` sont des fausses pistes. Conservez seulement les fragments utiles et regardez leur ordre.
+~~~text
+SALON|COMPTE|VOLEUR
+~~~
 
-## Dossier 6 — Le salon qui refuse de mourir
+**Indice de Jack :** le voleur est la personne indiquée par actor_id dans l’accès d’export du dossier. Anthony est le propriétaire du compte utilisé, pas le voleur.
 
-« Le salon n'est caché ni dans une seule table, ni dans un seul témoignage. Réunissez les traces qui résistent à la comparaison. »
+## Validation
 
-Reprenez les relations utiles, respectez l'ordre établi et assemblez seulement les informations confirmées. Quand l'équipe pense avoir terminé, utilisez le validateur.
+Quittez SQLite puis lancez :
 
-**Message d'aide de Jack :** Vous devez relier `clues`, `messages` et `events` avec des `JOIN`, puis trier les fragments avec `fragment_order`. N'utilisez pas une ligne isolée et ne devinez pas l'ordre.
+~~~bash
+python3 main.py --answer 'SALON|COMPTE|VOLEUR'
+~~~
 
-## Validation finale
+Une preuve incomplète vous renverra vers les indices. Une preuve correcte permettra de contacter Kevin.
 
-Quand l'équipe pense avoir terminé, quittez SQLite et lancez :
-
-```bash
-python3 main.py --flag 'VOTRE_PROPOSITION'
-```
-
-Une mauvaise réponse permet de recommencer. Une réponse correcte affiche le message de réussite et demande de contacter Kevin, le maître des salons.
-
-> « Si vous trouvez le bon salon, contactez Kevin, le maître des salons. » — Jack Query
+> « Lisa et Lydie ont vu des morceaux de la vérité. Anthony avait la clé. Mickael a franchi la porte. » — Jack Query
