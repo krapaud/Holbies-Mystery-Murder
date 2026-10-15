@@ -1,19 +1,21 @@
-"""Validate the final answer without exposing it."""
+"""Validate the structured final answer without exposing it."""
 
 import hashlib
 
-FLAG_DIGEST = "b10a31ebbd8a5a65e83783612b7dbbec1d133c050a792e53e6723cf792a6376f"
+ANSWER_DIGEST = "5ae303e35b25cc3b4376255e50d4332e2e5fd250c382e3b3e6039ba0362cdf5f"
 
 
 def validate(candidate: str) -> int:
-    digest = hashlib.sha256(candidate.strip().encode("utf-8")).hexdigest()
-    if digest == FLAG_DIGEST:
-        print("Félicitations, le mot de passe est correct ! Contacte Kevin, le maître des salons.")
+    normalized = candidate.strip().upper()
+    digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+    if digest == ANSWER_DIGEST:
+        print("Félicitations, vous avez identifié le salon, le compte utilisé et le voleur.")
+        print("Kevin vous attend : le dossier est résolu.")
         return 0
-    print("Ce mot de passe ne clôture pas l'enquête. Vérifie tes fragments et réessaie.")
+    print("La preuve est incomplète. Vérifiez le salon, le compte privilégié et l'auteur du vol.")
     return 1
 
 
 if __name__ == "__main__":
     import sys
-    raise SystemExit(validate(" ".join(sys.argv[1:]) if len(sys.argv) > 1 else input("Flag : ")))
+    raise SystemExit(validate(" ".join(sys.argv[1:]) if len(sys.argv) > 1 else input("Preuve finale : ")))
