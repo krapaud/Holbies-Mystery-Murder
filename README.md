@@ -15,7 +15,7 @@ Vous devez prouver :
 
 Mickael est le voleur. Anthony possédait les privilèges utilisés. Lisa et Lydie sont des passantes ou des victimes dont les témoignages permettent de reconstituer la chronologie.
 
-Vous devez lire les six dossiers de [game/dossiers.md](game/dossiers.md) dans l’ordre. Chaque requête doit utiliser au maximum un JOIN. Vous devez écrire une nouvelle requête lorsque vous avez besoin d’une nouvelle relation.
+Vous devez lire les six dossiers de [game/dossiers.md](game/dossiers.md) dans l’ordre. Chaque requête doit utiliser au maximum un JOIN. Vous devez aussi utiliser au moins une fois COUNT, GROUP BY et HAVING pour repérer le salon qui possède le plus de traces d’accès.
 
 ## Avant d’entrer dans les archives
 
