@@ -2,7 +2,7 @@
 
 import hashlib
 
-ANSWER_DIGEST = "d29aa5a12c4046bc86ba9562c7d416d43db9d108d7c9057e408107968786f672"
+ANSWER_DIGEST = "5ae303e35b25cc3b4376255e50d4332e2e5fd250c382e3b3e6039ba0362cdf5f"
 
 
 def validate(candidate: str) -> int:
