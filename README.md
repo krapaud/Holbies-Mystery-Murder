@@ -79,7 +79,6 @@ Gardez une chronologie avec les heures, les lieux et les observations exploitabl
 
 Retrouvez les actions qui portent sur le dossier. Notez leurs heures et les identités qui leur sont associées, puis vérifiez quelle action a suivi.
 
-
 **Jack Query :** « Les traces de l’export mentionnent plus d’une identité. Vérifiez le rôle de chacune avant d’accuser quelqu’un. »
 
 ### Dossier 6 : Le coupable
