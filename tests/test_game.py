@@ -47,6 +47,28 @@ class GameStartupTests(unittest.TestCase):
         self.assertEqual(target_exports, 1)
         self.assertGreater(all_exports, target_exports)
 
+    def test_campement_7_rename_keeps_identity_and_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            database = Path(directory) / "game.db"
+            build_database(database)
+
+            with sqlite3.connect(database) as connection:
+                current_name = connection.execute(
+                    "SELECT channel_name FROM channels WHERE channel_id = 7"
+                ).fetchone()[0]
+                names = connection.execute(
+                    "SELECT channel_name FROM channel_name_history "
+                    "WHERE channel_id = 7 ORDER BY valid_from"
+                ).fetchall()
+                rename = connection.execute(
+                    "SELECT channel_id, actor_id, occurred_at FROM access_logs "
+                    "WHERE action = 'rename'"
+                ).fetchone()
+
+        self.assertEqual(current_name, "🕳️ Salon fantôme")
+        self.assertEqual([row[0] for row in names], ["🏕️ Campement 7", "🕳️ Salon fantôme"])
+        self.assertEqual(rename, (7, 3, "2026-10-14 08:57:00"))
+
 
 if __name__ == "__main__":
     unittest.main()
