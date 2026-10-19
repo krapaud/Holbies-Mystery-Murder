@@ -45,9 +45,9 @@ Vous pouvez consulter toutes les archives. Conservez vos résultats pour confron
 
 ### Dossier 1 : La scène connue
 
-Retrouvez le Campement 7 dans les archives. Notez l’identifiant qui permet de le suivre dans les autres dossiers ainsi que son état actuel.
+Retrouvez le Campement 7 dans les archives. Notez l’identifiant qui permet de le suivre dans les autres dossiers, son état actuel et les noms qu’il a portés au fil de l’enquête.
 
-**Jack Query :** « Le salon a laissé des traces avant de disparaître. Commencez par établir son identité dans les archives. »
+**Jack Query :** « Le salon a laissé des traces avant de disparaître. Commencez par établir son identité et son histoire dans les archives. »
 
 ### Dossier 2 : Le pic d’activité
 

@@ -1,6 +1,7 @@
 PRAGMA foreign_keys = ON;
 
 DROP TABLE IF EXISTS clues;
+DROP TABLE IF EXISTS channel_name_history;
 DROP TABLE IF EXISTS access_logs;
 DROP TABLE IF EXISTS access_grants;
 DROP TABLE IF EXISTS events;
@@ -14,6 +15,18 @@ CREATE TABLE channels (
   channel_type TEXT NOT NULL CHECK (channel_type IN ('voice', 'text')),
   status TEXT NOT NULL CHECK (status IN ('active', 'hidden', 'archived')),
   created_at TEXT NOT NULL
+);
+
+CREATE TABLE channel_name_history (
+  history_id INTEGER PRIMARY KEY,
+  channel_id INTEGER NOT NULL,
+  channel_name TEXT NOT NULL,
+  valid_from TEXT NOT NULL,
+  valid_until TEXT,
+  changed_by INTEGER NOT NULL,
+  reason TEXT NOT NULL,
+  FOREIGN KEY (channel_id) REFERENCES channels(channel_id),
+  FOREIGN KEY (changed_by) REFERENCES members(member_id)
 );
 
 CREATE TABLE members (
