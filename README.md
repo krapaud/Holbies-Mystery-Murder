@@ -33,6 +33,10 @@ Vous devez disposer de Python 3, SQLite 3, d’un terminal et d’une équipe ca
 
 Vous ne devez modifier aucun fichier SQL pendant la partie.
 
+## Maintenance du kit de travail
+
+Le dépôt conserve sa configuration du kit partagé dans `.workspace.toml`. Le workflow GitHub [`Update workspace kit`](.github/workflows/update-workspace-kit.yml) vérifie périodiquement la version disponible et propose une mise à jour dans une branche et une pull request dédiées vers `dev`. La mise à jour ne modifie pas directement `main` et ne doit pas être exécutée pendant une partie.
+
 ## Le premier pas
 
 Vous devez vous placer à la racine du projet, puis lancer :
