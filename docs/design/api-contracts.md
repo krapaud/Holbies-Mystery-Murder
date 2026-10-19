@@ -1,0 +1,3 @@
+# Contrats d'interface
+
+Non applicable pour une API distante. L’interface locale est la console SQL lancée par `python3 main.py`. Elle ouvre une base de travail en lecture seule, accepte une requête terminée par `;`, limite chaque requête à une seule jointure relationnelle, explicite ou implicite (syntaxe avec virgules dans `FROM`), affiche les lignes puis une réaction non divulgatrice de Jack Query. Les écritures, transactions et rattachements de bases sont refusés par l’interface. `.tables`, `.schema [table]`, `.help` et `.exit` sont disponibles. Le validateur séparé accepte le flag exact et permet une nouvelle tentative.
