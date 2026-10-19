@@ -95,6 +95,8 @@ Vous devez réunir au moins trois éléments indépendants avant de conclure.
 
 Les archives contiennent volontairement plusieurs exports légitimes ou parasites. L’événement de vol indique le constat de Kevin, mais pas directement l’identité de l’auteur. Vous devez donc relier le salon, le compte privilégié, l’action technique et son acteur avant de conclure.
 
+Une copie peut avoir été demandée avant l’incident par une personne autorisée. Ne confondez pas cette copie légitime avec l’export qui précède la disparition du dossier.
+
 Vous devez produire uniquement :
 
 ~~~text
