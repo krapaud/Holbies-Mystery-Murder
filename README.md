@@ -27,16 +27,6 @@ Les archives contiennent les salons suivants :
 
 Choisissez un enquêteur qui partage son terminal avec l’équipe. Relevez ensemble les heures, les lieux et les identifiants qui soutiennent chaque hypothèse.
 
-## Avant d’entrer dans les archives
-
-Vous devez disposer de Python 3, SQLite 3, d’un terminal et d’une équipe capable de partager le terminal de l’enquêteur.
-
-Vous ne devez modifier aucun fichier SQL pendant la partie.
-
-## Maintenance du kit de travail
-
-Le dépôt conserve sa configuration du kit partagé dans `.workspace.toml`. Le workflow GitHub [`Update workspace kit`](.github/workflows/update-workspace-kit.yml) vérifie périodiquement la version disponible et propose une mise à jour dans une branche et une pull request dédiées vers `dev`. La mise à jour ne modifie pas directement `main` et ne doit pas être exécutée pendant une partie.
-
 ## Le premier pas
 
 Vous devez vous placer à la racine du projet, puis lancer :
@@ -45,24 +35,13 @@ Vous devez vous placer à la racine du projet, puis lancer :
 python3 main.py
 ~~~
 
-La console d’enquête s’ouvre automatiquement. Vous devez commencer par afficher les tables et leur structure :
-
-~~~sql
-.tables
-.schema
-~~~
-
-Vous devez terminer chaque requête SQL par un point-virgule. Une requête peut être saisie sur plusieurs lignes. La console affiche les résultats puis une remarque de Jack Query, y compris lorsque la recherche échoue ou ne retourne aucune ligne. Cette remarque vous aide à poursuivre sans livrer la réponse.
-
-Vous pouvez afficher le schéma d’une seule table avec `.schema nom_de_table`, consulter l’aide avec `.help` et quitter avec `.exit`. Vous devez saisir chaque commande commençant par un point séparément. La console reconstruit une copie de travail ignorée par Git à chaque démarrage et n’autorise que les recherches `SELECT`, même si une requête tente d’attacher une autre base. Chaque requête peut relier au plus deux sources, quelle que soit la syntaxe de jointure utilisée. Vous ne devez modifier aucun fichier SQL ni les archives.
-
-Vous devez travailler en équipe, noter les preuves et ne pas conclure à partir d’un seul message.
+La console d’enquête s’ouvre automatiquement. Travaillez en équipe, notez les preuves et ne concluez jamais à partir d’un seul indice.
 
 ## Les dossiers de Jack Query
 
 > « Chaque archive ne raconte qu’un morceau de l’histoire. Vérifiez les heures avant de croire les déclarations. »
 
-Vous pouvez consulter toutes les archives, mais chaque requête doit contenir au maximum une jointure. La console refuse aussi les jointures implicites, afin que la limite reste la même quelle que soit la syntaxe SQL utilisée. Conservez vos résultats pour confronter les déclarations aux traces techniques.
+Vous pouvez consulter toutes les archives. Conservez vos résultats pour confronter les déclarations aux traces techniques.
 
 ### Dossier 1 : La scène connue
 
@@ -88,7 +67,7 @@ Retrouvez qui disposait du niveau d’autorisation nécessaire sur le salon conc
 
 Retrouvez toutes les déclarations enregistrées autour de l’incident et rassemblez-les dans une seule chronologie. Les archives contiennent des déclarations utiles et d’autres qui n’apportent aucun renseignement sur le vol.
 
-Associez chaque déclaration à son auteur avec au maximum une jointure. Comparez ensuite les heures et les lieux déclarés avec les autres traces.
+Associez chaque déclaration à son auteur. Comparez ensuite les heures et les lieux déclarés avec les autres traces.
 
 Pour chaque témoin, notez ce qu’il a personnellement vu ou entendu, ce qu’il suppose et ce que les traces confirment. Une présence au bon endroit ne suffit pas à prouver qu’une personne a vu le vol.
 
