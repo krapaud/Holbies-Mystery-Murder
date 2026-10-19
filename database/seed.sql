@@ -33,7 +33,8 @@ INSERT INTO messages (message_id, channel_id, member_id, sent_at, body, evidence
 (7,1,3,'2026-10-14 08:58:00','La recherche est terminée. Inutile de revenir sur le salon.','DECOY'),
 (8,4,4,'2026-10-14 08:36:00','Je traversais Campement 1. Je n ai pas vu le visage de la personne pres du couloir.','TEMOIN-08'),
 (9,5,5,'2026-10-14 08:44:00','Je suis passee par Campement 2 apres Le Feu de camp. Je n ai pas revu le porteur du badge.','TEMOIN-09'),
-(10,1,1,'2026-10-14 09:03:00','Le proprietaire du badge affirme ne pas avoir exporte le dossier.','TEMOIN-10');
+(10,1,1,'2026-10-14 09:03:00','Le proprietaire du badge affirme ne pas avoir exporte le dossier.','TEMOIN-10'),
+(14,3,4,'2026-10-14 08:46:00','Kevin m a demande une copie de travail du dossier avant la reunion.','TEMOIN-14');
 
 INSERT INTO events (event_id, channel_id, member_id, event_type, occurred_at, details, evidence_tag) VALUES
 (1,7,1,'create','2026-10-14 08:31:00','Kevin ouvre Campement 7 pour deposer le dossier.','START'),
@@ -46,13 +47,15 @@ INSERT INTO events (event_id, channel_id, member_id, event_type, occurred_at, de
 (8,4,4,'join','2026-10-14 08:35:30','Lisa rejoint Campement 1.','TEMOIN-08'),
 (9,5,5,'join','2026-10-14 08:43:30','Lydie rejoint Campement 2 apres son passage au Feu de camp.','TEMOIN-09'),
 (10,1,1,'join','2026-10-14 09:03:00','Kevin ajoute un dernier témoignage après sa vérification.','TEMOIN-10'),
+(15,7,4,'permission','2026-10-14 08:43:00','Lisa reçoit un droit de lecture temporaire pour préparer une copie demandée par Kevin.','LEGIT-EXPORT'),
 (14,3,4,'join','2026-10-14 08:50:30','Lisa rejoint Besoin d aide.','TEMOIN-05');
 
 INSERT INTO access_grants (grant_id, channel_id, member_id, privilege, granted_at, granted_by) VALUES
 (1,7,2,'manage','2026-10-14 08:32:00',1),
 (2,1,1,'read','2026-10-14 08:33:00',1),
 (3,3,4,'read','2026-10-14 08:34:00',1),
-(4,2,5,'read','2026-10-14 08:35:00',1);
+(4,2,5,'read','2026-10-14 08:35:00',1),
+(5,7,4,'read','2026-10-14 08:43:00',1);
 
 INSERT INTO access_logs (log_id, channel_id, credential_owner_id, actor_id, occurred_at, action, device, details) VALUES
 (1,7,2,2,'2026-10-14 08:32:30','login','poste-02','Le proprietaire ouvre sa session de gestion.'),
@@ -65,7 +68,7 @@ INSERT INTO access_logs (log_id, channel_id, credential_owner_id, actor_id, occu
 (8,4,4,4,'2026-10-14 08:36:00','login','poste-04','Lisa ouvre une session de lecture sur Campement 1.'),
 (9,5,5,5,'2026-10-14 08:43:45','login','poste-05','Lydie ouvre une session de lecture sur Campement 2.'),
 (10,1,1,1,'2026-10-14 08:45:00','login','poste-01','Kevin consulte la grande salle.'),
-(17,7,4,4,'2026-10-14 08:44:30','export','poste-04','Lisa exporte une copie de travail de Campement 7 avant son masquage.'),
+(17,7,4,4,'2026-10-14 08:44:30','export','poste-04','Lisa exporte la copie de travail demandée par Kevin avant la réunion.'),
 (14,3,4,4,'2026-10-14 08:50:30','login','poste-04','Lisa ouvre une session de lecture sur Besoin d aide.');
 
 INSERT INTO members (member_id, display_name, joined_at) VALUES
