@@ -11,7 +11,9 @@ for file in \
   "$EVIDENCE/identity/sessions.log" \
   "$EVIDENCE/logs/access.log" \
   "$EVIDENCE/logs/terminal-history.log" \
+  "$EVIDENCE/logs/command-audit.txt" \
   "$EVIDENCE/git/branch-log.txt" \
+  "$EVIDENCE/git/reflog.txt" \
   "$EVIDENCE/permissions/current.txt" \
   "$EVIDENCE/team/notes.txt"; do
   test -s "$file"
@@ -24,6 +26,8 @@ grep -Fq 's-44|m-01|poste-04' "$EVIDENCE/identity/sessions.log"
 grep -Fq 'cred-17|m-02' "$EVIDENCE/identity/credentials.txt"
 grep -Fq 's-44|cred-17|remove|release/release-candidate.tar.gz|success' "$EVIDENCE/logs/access.log"
 grep -Fq 'poste-04 rm' "$EVIDENCE/logs/terminal-history.log"
+grep -Fq 'cmd-105|2026-10-19 15:42:16|poste-04' "$EVIDENCE/logs/command-audit.txt"
 grep -Fq 'session=s-44' "$EVIDENCE/git/branch-log.txt"
+grep -Fq 'workstation=poste-04' "$EVIDENCE/git/reflog.txt"
 
 echo "Shell Mystery Murder corpus: OK"
