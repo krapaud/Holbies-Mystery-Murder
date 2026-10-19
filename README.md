@@ -87,6 +87,7 @@ Formulez votre conclusion à partir de plusieurs traces indépendantes. Vérifie
 
 - qui pouvait accéder au salon ;
 - qui a déclenché les actions sur le dossier et à quel moment ;
+- quelles actions suspectes ne correspondent à aucune autorisation ;
 - les déclarations compatibles avec cette chronologie ;
 - le message publié après l’incident.
 
