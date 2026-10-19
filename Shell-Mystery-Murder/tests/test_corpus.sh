@@ -18,6 +18,8 @@ for file in \
 done
 
 grep -Fq 'missing_file=release/release-candidate.tar.gz' "$EVIDENCE/incident/incident-note.txt"
+grep -Fq 's-07|m-03|poste-01' "$EVIDENCE/identity/sessions.log"
+grep -Fq 's-07|cred-review-03|checksum' "$EVIDENCE/logs/access.log"
 grep -Fq 's-44|m-01|poste-04' "$EVIDENCE/identity/sessions.log"
 grep -Fq 'cred-17|m-02' "$EVIDENCE/identity/credentials.txt"
 grep -Fq 's-44|cred-17|remove|release/release-candidate.tar.gz|success' "$EVIDENCE/logs/access.log"
