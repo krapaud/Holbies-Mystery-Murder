@@ -1,1 +1,0 @@
-"""Northstar investigation console."""
