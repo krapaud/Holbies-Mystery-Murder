@@ -4,6 +4,10 @@ set -euo pipefail
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 EVIDENCE="$ROOT/evidence"
 
+for dossier in 01 02 03 04 05 06; do
+  test -d "$ROOT/dossiers/dossier-$dossier"
+done
+
 for file in \
   "$EVIDENCE/incident/incident-note.txt" \
   "$EVIDENCE/identity/members.txt" \
@@ -18,6 +22,8 @@ for file in \
   "$EVIDENCE/team/notes.txt"; do
   test -s "$file"
 done
+
+test -s "$ROOT/dossiers/README.md"
 
 grep -Fq 'missing_file=release/release-candidate.tar.gz' "$EVIDENCE/incident/incident-note.txt"
 grep -Fq 's-07|m-03|poste-01' "$EVIDENCE/identity/sessions.log"
