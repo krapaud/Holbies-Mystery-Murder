@@ -65,6 +65,7 @@ INSERT INTO access_logs (log_id, channel_id, credential_owner_id, actor_id, occu
 (8,4,4,4,'2026-10-14 08:36:00','login','poste-04','Lisa ouvre une session de lecture sur Campement 1.'),
 (9,5,5,5,'2026-10-14 08:43:45','login','poste-05','Lydie ouvre une session de lecture sur Campement 2.'),
 (10,1,1,1,'2026-10-14 08:45:00','login','poste-01','Kevin consulte la grande salle.'),
+(17,7,4,4,'2026-10-14 08:44:30','export','poste-04','Lisa exporte une copie de travail de Campement 7 avant son masquage.'),
 (14,3,4,4,'2026-10-14 08:50:30','login','poste-04','Lisa ouvre une session de lecture sur Besoin d aide.');
 
 INSERT INTO members (member_id, display_name, joined_at) VALUES

@@ -44,7 +44,7 @@ class GameStartupTests(unittest.TestCase):
                 ).fetchone()[0]
 
         self.assertEqual(event_member, 1)
-        self.assertEqual(target_exports, 1)
+        self.assertEqual(target_exports, 2)
         self.assertGreater(all_exports, target_exports)
 
     def test_campement_7_rename_keeps_identity_and_history(self):
@@ -68,6 +68,23 @@ class GameStartupTests(unittest.TestCase):
         self.assertEqual(current_name, "🕳️ Salon fantôme")
         self.assertEqual([row[0] for row in names], ["🏕️ Campement 7", "🕳️ Salon fantôme"])
         self.assertEqual(rename, (7, 3, "2026-10-14 08:57:00"))
+
+    def test_suspicious_export_without_grant_is_a_decoy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            database = Path(directory) / "game.db"
+            build_database(database)
+
+            with sqlite3.connect(database) as connection:
+                decoy = connection.execute(
+                    "SELECT actor_id FROM access_logs "
+                    "WHERE channel_id = 7 AND action = 'export' AND actor_id = 4"
+                ).fetchone()
+                grant = connection.execute(
+                    "SELECT 1 FROM access_grants WHERE channel_id = 7 AND member_id = 4"
+                ).fetchone()
+
+        self.assertEqual(decoy, (4,))
+        self.assertIsNone(grant)
 
 
 if __name__ == "__main__":
