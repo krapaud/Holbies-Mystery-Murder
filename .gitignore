@@ -1,4 +1,6 @@
 .codex/
+AGENTS.md
+docs/
 
 # Base SQLite générée au lancement
 .student-data/

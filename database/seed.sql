@@ -34,7 +34,7 @@ INSERT INTO events (event_id, channel_id, member_id, event_type, occurred_at, de
 (2,7,2,'permission','2026-10-14 08:32:00','Un membre recoit le privilege manage pour aider Kevin.','PRIV'),
 (3,3,4,'join','2026-10-14 08:38:00','Lisa rejoint Besoin d aide.','TEMOIN-02'),
 (4,2,5,'join','2026-10-14 08:41:00','Lydie rejoint Le Feu de camp.','TEMOIN-03'),
-(5,7,3,'theft','2026-10-14 08:52:00','Le contenu de Campement 7 est exporte puis le salon est masque.','THEFT'),
+(5,7,1,'theft','2026-10-14 08:52:00','Kevin constate qu une exportation a precede le masquage de Campement 7.','THEFT'),
 (6,1,1,'archive','2026-10-14 08:53:00','Kevin constate que Campement 7 est devenu invisible.','HIDDEN'),
 (7,1,3,'rename','2026-10-14 08:57:00','Un membre publie un faux message dans La grande salle.','DECOY'),
 (8,4,4,'join','2026-10-14 08:35:30','Lisa rejoint Campement 1.','TEMOIN-08'),
@@ -80,5 +80,9 @@ INSERT INTO access_logs (log_id, channel_id, credential_owner_id, actor_id, occu
 (11,4,6,6,'2026-10-14 08:32:30','login','poste-06','Nora ouvre une session de lecture sur Campement 1.'),
 (12,6,7,7,'2026-10-14 08:46:30','login','poste-08','Samir ouvre une session de lecture sur Campement 3.'),
 (13,2,8,8,'2026-10-14 08:48:30','login','poste-09','Zoe ouvre une session de lecture sur Le Feu de camp.');
+
+INSERT INTO access_logs (log_id, channel_id, credential_owner_id, actor_id, occurred_at, action, device, details) VALUES
+(15,3,4,4,'2026-10-14 08:49:30','export','poste-04','Lisa exporte un extrait de discussion pour préparer son témoignage.'),
+(16,2,5,5,'2026-10-14 08:50:00','export','poste-05','Lydie exporte une copie de travail du Feu de camp.');
 
 COMMIT;
