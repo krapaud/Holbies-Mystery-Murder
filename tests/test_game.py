@@ -27,6 +27,26 @@ class GameStartupTests(unittest.TestCase):
         self.assertGreater(initial_count, 0)
         self.assertEqual(restarted_count, initial_count)
 
+    def test_theft_event_requires_technical_trace_to_identify_actor(self):
+        with tempfile.TemporaryDirectory() as directory:
+            database = Path(directory) / "game.db"
+            build_database(database)
+
+            with sqlite3.connect(database) as connection:
+                event_member = connection.execute(
+                    "SELECT member_id FROM events WHERE event_type = 'theft' AND channel_id = 7"
+                ).fetchone()[0]
+                target_exports = connection.execute(
+                    "SELECT COUNT(*) FROM access_logs WHERE action = 'export' AND channel_id = 7"
+                ).fetchone()[0]
+                all_exports = connection.execute(
+                    "SELECT COUNT(*) FROM access_logs WHERE action = 'export'"
+                ).fetchone()[0]
+
+        self.assertEqual(event_member, 1)
+        self.assertEqual(target_exports, 1)
+        self.assertGreater(all_exports, target_exports)
+
 
 if __name__ == "__main__":
     unittest.main()

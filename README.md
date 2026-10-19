@@ -114,6 +114,8 @@ Formulez votre conclusion à partir de plusieurs traces indépendantes. Vérifie
 
 Vous devez réunir au moins trois éléments indépendants avant de conclure.
 
+Les archives contiennent volontairement plusieurs exports légitimes ou parasites. L’événement de vol indique le constat de Kevin, mais pas directement l’identité de l’auteur. Vous devez donc relier le salon, le compte privilégié, l’action technique et son acteur avant de conclure.
+
 Vous devez produire uniquement :
 
 ~~~text
