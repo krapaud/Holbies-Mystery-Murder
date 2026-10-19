@@ -1,0 +1,1 @@
+/Users/krapaud/.local/share/agentic-starter-kits/kits/codex/1.16.51/AGENTS.md
