@@ -18,10 +18,10 @@ INSERT INTO members (member_id, display_name, joined_at) VALUES
 (5,'Lydie','2026-10-14 08:06:00');
 
 INSERT INTO channel_name_history
-  (history_id, channel_id, channel_name, valid_from, valid_until, changed_by, reason)
+  (history_id, channel_id, channel_name, valid_from, valid_until, credential_owner_id, reason)
 VALUES
 (1,7,'🏕️ Campement 7','2026-10-14 08:30:00','2026-10-14 08:57:00',1,'Kevin ouvre le salon pour déposer le dossier.'),
-(2,7,'🕳️ Salon fantôme','2026-10-14 08:57:00',NULL,3,'Le salon masqué est renommé après la disparition du dossier.');
+(2,7,'🕳️ Salon fantôme','2026-10-14 08:57:00',NULL,2,'Le salon est renommé après son masquage avec le compte d’Anthony.');
 
 INSERT INTO messages (message_id, channel_id, member_id, sent_at, body, evidence_tag) VALUES
 (1,1,1,'2026-10-14 08:35:00','Le Campement 7 contient le dossier que je devais remettre a Kevin.','KEVIN'),

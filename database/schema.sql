@@ -23,10 +23,10 @@ CREATE TABLE channel_name_history (
   channel_name TEXT NOT NULL,
   valid_from TEXT NOT NULL,
   valid_until TEXT,
-  changed_by INTEGER NOT NULL,
+  credential_owner_id INTEGER NOT NULL,
   reason TEXT NOT NULL,
   FOREIGN KEY (channel_id) REFERENCES channels(channel_id),
-  FOREIGN KEY (changed_by) REFERENCES members(member_id)
+  FOREIGN KEY (credential_owner_id) REFERENCES members(member_id)
 );
 
 CREATE TABLE members (

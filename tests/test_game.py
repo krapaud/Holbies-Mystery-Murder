@@ -57,7 +57,7 @@ class GameStartupTests(unittest.TestCase):
                     "SELECT channel_name FROM channels WHERE channel_id = 7"
                 ).fetchone()[0]
                 names = connection.execute(
-                    "SELECT channel_name FROM channel_name_history "
+                    "SELECT channel_name, credential_owner_id FROM channel_name_history "
                     "WHERE channel_id = 7 ORDER BY valid_from"
                 ).fetchall()
                 rename = connection.execute(
@@ -70,6 +70,7 @@ class GameStartupTests(unittest.TestCase):
 
         self.assertEqual(current_name, "🕳️ Salon fantôme")
         self.assertEqual([row[0] for row in names], ["🏕️ Campement 7", "🕳️ Salon fantôme"])
+        self.assertEqual([row[1] for row in names], [1, 2])
         self.assertEqual(rename, (7, 2, 3, "2026-10-14 08:57:00"))
         self.assertEqual(event_actor, 2)
 
