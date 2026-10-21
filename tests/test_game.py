@@ -61,13 +61,18 @@ class GameStartupTests(unittest.TestCase):
                     "WHERE channel_id = 7 ORDER BY valid_from"
                 ).fetchall()
                 rename = connection.execute(
-                    "SELECT channel_id, actor_id, occurred_at FROM access_logs "
+                    "SELECT channel_id, credential_owner_id, actor_id, occurred_at FROM access_logs "
                     "WHERE action = 'rename'"
                 ).fetchone()
 
         self.assertEqual(current_name, "🕳️ Salon fantôme")
         self.assertEqual([row[0] for row in names], ["🏕️ Campement 7", "🕳️ Salon fantôme"])
-        self.assertEqual(rename, (7, 3, "2026-10-14 08:57:00"))
+        self.assertEqual(rename, (7, 2, 3, "2026-10-14 08:57:00"))
+                event_actor = connection.execute(
+                    "SELECT member_id FROM events WHERE event_type = 'rename' AND channel_id = 7"
+                ).fetchone()[0]
+
+        self.assertEqual(event_actor, 2)
 
     def test_authorized_export_is_a_credible_decoy(self):
         with tempfile.TemporaryDirectory() as directory:
