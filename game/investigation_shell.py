@@ -1,6 +1,8 @@
 """Console SQL en lecture seule avec les réactions de Jack Query."""
 
+import os
 import sqlite3
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -15,10 +17,23 @@ TABLE_REACTIONS = {
 }
 GENERIC_REACTION = "Notez ce résultat, puis confrontez-le à une archive indépendante avant de conclure."
 MULTI_ARCHIVE_REACTION = "Plusieurs archives se recoupent. Distinguez ce qu’elles confirment de ce qu’elles ne montrent pas."
+YELLOW = "\033[33m"
+RESET = "\033[0m"
 FROM_CLAUSE_END = {
     "WHERE", "GROUP", "HAVING", "ORDER", "LIMIT", "WINDOW", "UNION",
     "EXCEPT", "INTERSECT", "RETURNING", "QUALIFY",
 }
+
+
+def _print_narration(message: str, prefix: str = "[Jack Query]") -> None:
+    """Affiche la narration en jaune dans un terminal, sans polluer les sorties redirigées."""
+    line = f"{prefix} {message}"
+    forced = os.environ.get("FORCE_COLOR", "") not in {"", "0"}
+    is_terminal = getattr(sys.stdout, "isatty", lambda: False)()
+    supports_color = forced or is_terminal
+    if "NO_COLOR" in os.environ:
+        supports_color = False
+    print(f"{YELLOW}{line}{RESET}" if supports_color else line)
 
 
 def _sql_tokens(sql: str) -> list[tuple[str, int]]:
@@ -149,7 +164,7 @@ def _show_tables(connection: sqlite3.Connection) -> None:
         "SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name"
     ).fetchall()
     print("  ".join(row[0] for row in rows))
-    print("[Jack Query] Les archives sont ouvertes. Choisissez un dossier et suivez ses liens.")
+    _print_narration("Les archives sont ouvertes. Choisissez un dossier et suivez ses liens.")
 
 
 def _show_schema(connection: sqlite3.Connection, table: Optional[str] = None) -> None:
@@ -175,7 +190,7 @@ def _show_schema(connection: sqlite3.Connection, table: Optional[str] = None) ->
             ).fetchone()
             if result and result[0]:
                 print(result[0] + ";")
-    print("[Jack Query] Le schéma indique comment les archives se répondent, pas ce qu’elles prouvent.")
+    _print_narration("Le schéma indique comment les archives se répondent, pas ce qu’elles prouvent.")
 
 
 def _handle_command(connection: sqlite3.Connection, command: str) -> bool:
@@ -186,7 +201,7 @@ def _handle_command(connection: sqlite3.Connection, command: str) -> bool:
         return False
     if name in {".help", ".?"}:
         print("Commandes : .tables, .schema [table], .help, .exit. Terminez chaque requête SQL par un point-virgule.")
-        print("[Jack Query] Une requête à la fois, et une seule jointure au maximum, quelle que soit sa syntaxe.")
+        _print_narration("Une requête à la fois, et une seule jointure au maximum, quelle que soit sa syntaxe.")
     elif name == ".tables":
         _show_tables(connection)
     elif name == ".schema":
@@ -221,7 +236,10 @@ def run_sql_console(database: Path) -> int:
             sql = pending.strip()
             pending = ""
             if _join_count(sql) > 1:
-                print("Jack Query : cette archive demande une seule jointure au maximum. Séparez votre recherche en plusieurs requêtes.")
+                _print_narration(
+                    "cette archive demande une seule jointure au maximum. Séparez votre recherche en plusieurs requêtes.",
+                    prefix="Jack Query :",
+                )
                 continue
             try:
                 read_tables = set()
@@ -229,10 +247,10 @@ def run_sql_console(database: Path) -> int:
                 cursor = connection.execute(sql)
                 rows = cursor.fetchall() if cursor.description else []
                 _format_rows(cursor, rows)
-                print(f"[Jack Query] {_narration(read_tables, len(rows) if cursor.description else 1)}")
+                _print_narration(_narration(read_tables, len(rows) if cursor.description else 1))
             except sqlite3.Error as error:
                 print(f"Archive illisible : {error}")
-                print("[Jack Query] Vérifiez le nom de la table, les colonnes et la forme de votre requête.")
+                _print_narration("Vérifiez le nom de la table, les colonnes et la forme de votre requête.")
             finally:
                 connection.set_authorizer(None)
     finally:

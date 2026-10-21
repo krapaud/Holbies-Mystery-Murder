@@ -159,6 +159,22 @@ class InvestigationShellTests(unittest.TestCase):
         self.assertIn("Les événements fixent des faits dans le temps", output)
         self.assertNotIn("Une déclaration donne un point de vue", output)
 
+    def test_narration_is_yellow_when_color_is_forced(self):
+        with patch.dict("os.environ", {"FORCE_COLOR": "1"}, clear=True):
+            status, output = self.run_console("SELECT detail FROM events;")
+
+        self.assertEqual(status, 0)
+        self.assertIn("\033[33m[Jack Query] Les événements fixent des faits dans le temps.", output)
+        self.assertIn("\033[0m", output)
+
+    def test_no_color_environment_disables_forced_narration_color(self):
+        with patch.dict("os.environ", {"FORCE_COLOR": "1", "NO_COLOR": "1"}, clear=True):
+            status, output = self.run_console("SELECT detail FROM events;")
+
+        self.assertEqual(status, 0)
+        self.assertIn("[Jack Query] Les événements fixent des faits dans le temps.", output)
+        self.assertNotIn("\033[33m", output)
+
 
 if __name__ == "__main__":
     unittest.main()
