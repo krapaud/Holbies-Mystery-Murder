@@ -28,10 +28,10 @@ FROM_CLAUSE_END = {
 def _print_narration(message: str, prefix: str = "[Jack Query]") -> None:
     """Affiche la narration en jaune dans un terminal, sans polluer les sorties redirigées."""
     line = f"{prefix} {message}"
-    forced = os.environ.get("FORCE_COLOR", "") not in {"", "0"}
+    forced = os.environ.get("FORCE_COLOR") in {"1", "2", "3"}
     is_terminal = getattr(sys.stdout, "isatty", lambda: False)()
     supports_color = forced or is_terminal
-    if "NO_COLOR" in os.environ:
+    if os.environ.get("NO_COLOR"):
         supports_color = False
     print(f"{YELLOW}{line}{RESET}" if supports_color else line)
 
