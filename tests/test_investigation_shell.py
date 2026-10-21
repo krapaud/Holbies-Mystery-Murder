@@ -216,5 +216,27 @@ class InvestigationShellTests(unittest.TestCase):
         self.assertEqual(output.getvalue(), "[Jack Query] Dialogue de test\n")
 
 
+    def test_multiline_query_does_not_insert_continuation_prompts(self):
+        commands = iter([
+            "SELECT id, label",
+            "FROM alpha",
+            "WHERE id = 1;",
+            ".exit",
+        ])
+        prompts = []
+        output = io.StringIO()
+
+        def fake_input(prompt=""):
+            prompts.append(prompt)
+            return next(commands)
+
+        with patch("builtins.input", side_effect=fake_input), redirect_stdout(output):
+            status = run_sql_console(self.database)
+
+        self.assertEqual(status, 0)
+        self.assertIn("archive-readable", output.getvalue())
+        self.assertEqual(prompts, ["sql> ", "", "", "sql> "])
+
+
 if __name__ == "__main__":
     unittest.main()

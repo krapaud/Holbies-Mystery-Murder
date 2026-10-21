@@ -220,7 +220,7 @@ def run_sql_console(database: Path) -> int:
     try:
         while True:
             try:
-                line = input("sql> " if not pending else "... ")
+                line = input("sql> " if not pending else "")
             except EOFError:
                 print()
                 break
