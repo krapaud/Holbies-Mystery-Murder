@@ -8,7 +8,7 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
-from game.investigation_shell import run_sql_console
+from game.investigation_shell import _print_narration, run_sql_console
 
 
 class InvestigationShellTests(unittest.TestCase):
@@ -158,6 +158,62 @@ class InvestigationShellTests(unittest.TestCase):
         self.assertIn("ordinary timeline event", output)
         self.assertIn("Les événements fixent des faits dans le temps", output)
         self.assertNotIn("Une déclaration donne un point de vue", output)
+
+    def test_narration_is_yellow_when_color_is_forced(self):
+        with patch.dict("os.environ", {"FORCE_COLOR": "1"}, clear=True):
+            status, output = self.run_console("SELECT detail FROM events;")
+
+        self.assertEqual(status, 0)
+        self.assertIn("\033[33m[Jack Query] Les événements fixent des faits dans le temps.", output)
+        self.assertIn("\033[0m", output)
+
+    def test_no_color_environment_disables_forced_narration_color(self):
+        with patch.dict("os.environ", {"FORCE_COLOR": "1", "NO_COLOR": "1"}, clear=True):
+            status, output = self.run_console("SELECT detail FROM events;")
+
+        self.assertEqual(status, 0)
+        self.assertIn("[Jack Query] Les événements fixent des faits dans le temps.", output)
+        self.assertNotIn("\033[33m", output)
+
+    def test_tty_gets_color_without_force_color(self):
+        class TTYStream(io.StringIO):
+            def isatty(self):
+                return True
+
+        output = TTYStream()
+        with patch.dict("os.environ", {}, clear=True):
+            with patch("game.investigation_shell.sys.stdout", output):
+                _print_narration("Dialogue de test")
+
+        self.assertIn("\033[33m[Jack Query] Dialogue de test\033[0m", output.getvalue())
+
+    def test_redirected_output_stays_plain_without_force_color(self):
+        output = io.StringIO()
+        with patch.dict("os.environ", {}, clear=True):
+            with patch("game.investigation_shell.sys.stdout", output):
+                _print_narration("Dialogue de test")
+
+        self.assertEqual(output.getvalue(), "[Jack Query] Dialogue de test\n")
+
+    def test_empty_no_color_does_not_disable_tty_color(self):
+        class TTYStream(io.StringIO):
+            def isatty(self):
+                return True
+
+        output = TTYStream()
+        with patch.dict("os.environ", {"NO_COLOR": ""}, clear=True):
+            with patch("game.investigation_shell.sys.stdout", output):
+                _print_narration("Dialogue de test")
+
+        self.assertIn("\033[33m[Jack Query] Dialogue de test\033[0m", output.getvalue())
+
+    def test_force_color_zero_does_not_color_redirected_output(self):
+        output = io.StringIO()
+        with patch.dict("os.environ", {"FORCE_COLOR": "0"}, clear=True):
+            with patch("game.investigation_shell.sys.stdout", output):
+                _print_narration("Dialogue de test")
+
+        self.assertEqual(output.getvalue(), "[Jack Query] Dialogue de test\n")
 
 
 if __name__ == "__main__":
